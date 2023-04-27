@@ -11,8 +11,8 @@
       <!--USUARIO-->
       <div class="margin-custom">
         <ion-label class="ion-text-start bold font-input-custom">Ingrese su correo electrónico:</ion-label>
-        <ion-item>
-          <ion-input color="dark" type="text" placeholder="correo electrónico" #mail
+        <ion-item style="--background: #E79A5F;">
+          <ion-input color="dark" class="inputs-custom" type="text" placeholder="correo electrónico" #mail
             (ionInput)="validadCampoVacio(mail)" name="email" [(ngModel)]="email"></ion-input>
         </ion-item>
         <div class="font-error-custom error-message-height">
@@ -22,8 +22,8 @@
       <!--CONTRASEÑA-->
       <div class="margin-custom">
         <ion-label class="ion-text-start bold font-input-custom">Ingrese su contraseña:</ion-label>
-        <ion-item>
-          <ion-input color="dark" type="password" placeholder="contraseña" #pass (ionInput)="validadCampoVacio(pass)"
+        <ion-item style="--background: #E79A5F;">
+          <ion-input color="dark" type="password" class="inputs-custom" placeholder="contraseña" #pass (ionInput)="validadCampoVacio(pass)"
             [(ngModel)]="password"></ion-input>
         </ion-item>
         <div class="font-error-custom error-message-height">
