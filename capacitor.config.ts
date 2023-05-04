@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'PruebaApp',
+  appId: 'camara.ionic.starter',
+  appName: 'Relevamiento visual',
   webDir: 'www',
   bundledWebRuntime: false,
   plugins: {
