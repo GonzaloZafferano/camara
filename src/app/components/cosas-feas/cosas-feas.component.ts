@@ -1,38 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
+import { Foto } from 'src/app/models/Foto';
+import { FireStorageService } from 'src/app/services/fire-storage.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { FotoService } from 'src/app/services/foto.service';
+import { LoginService } from 'src/app/services/login.service';
 import { IonicModule, LoadingController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LoginComponent } from '../components/login/login.component';
-import { Output, EventEmitter } from '@angular/core';
-import { RegistroComponent } from '../components/registro/registro.component';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
-import { BienvenidoComponent } from '../components/bienvenido/bienvenido.component';
-import { Camera, CameraResultType } from '@capacitor/camera';
-import { FotoService } from '../services/foto.service';
-import { FireStorageService } from '../services/fire-storage.service';
-import { Firestore } from '@angular/fire/firestore';
-import { Foto } from '../models/Foto';
-import { FirestoreService } from '../services/firestore.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  standalone: true,
+  selector: 'app-cosas-feas',
+  templateUrl: './cosas-feas.component.html',
+  styleUrls: ['./cosas-feas.component.scss'],
+  standalone : true,
+  
   imports: [IonicModule,
     CommonModule,
-    FormsModule,
-    LoginComponent,
-    RegistroComponent,
-    BienvenidoComponent], //Array de MODULOS Y 'COMPONENTES QUE SEAN STANDALONE:true'
+    FormsModule]
+
 })
-export class HomePage {
+export class CosasFeasComponent  implements OnInit {
 
   suscripcion: any;
   ruta: string = '';
-  constructor(private auth: AngularFireAuth, private firestore: FirestoreService, private fireStorage: FireStorageService, private loginService: LoginService, private router: Router, public loadingController: LoadingController, private foto: FotoService) {
+  constructor(private auth: AngularFireAuth, private firestore: FirestoreService, 
+    private fireStorage: FireStorageService, private loginService: LoginService, private router: Router, public loadingController: LoadingController, private foto: FotoService) {
+
+  }
+  ngOnInit(): void {
+    
 
   }
 
@@ -59,11 +57,6 @@ export class HomePage {
     return loading;
   }
 
-
-
-  async sacarFotoLinda() {
-    await this.sacarFoto(1);
-  }
 
   async sacarFotoFea() {
     await this.sacarFoto(1);
@@ -99,6 +92,9 @@ export class HomePage {
               foto.ruta = url;
               foto.usuarioPropietarioId = idUsuario;
               foto.fotoCategoria = tipoFoto;
+              foto.nombreFoto = nombreFoto;
+              foto.usuario = usuario;
+
               this.firestore.guardar(foto);
             });
         });
@@ -123,19 +119,13 @@ export class HomePage {
     return cadenaDia + '-' + cadenaMes + '-' + anio.toString() + '_' + hora + '-' + minutos + '-' + segundos;
   }
 
-  leerFoto() {
-    let z = this.fireStorage.obtenerFoto('https://firebasestorage.googleapis.com/v0/b/p-p-s-2d400.appspot.com/o/gonzalo%40prueba.com_10-05-2023_21-4-515?alt=media&token=f96cd745-774c-4b64-a41a-8202bd271eed');
 
-    this.ruta = 'https://firebasestorage.googleapis.com/v0/b/p-p-s-2d400.appspot.com/o/gonzalo%40prueba.com_10-05-2023_21-4-515?alt=media&token=f96cd745-774c-4b64-a41a-8202bd271eed';
-    debugger;
-    //this.ruta = z;
+  verFotos(){
+    this.router.navigate(['listaFeas']);
   }
 
-  cosasLindas() {
-    this.router.navigate(['cosasLindas']);
-  }
-
-  cosasFeas() {
-    this.router.navigate(['cosasFeas']);
-  }
+  
+  volver() {
+    this.router.navigate(['home']);
+}
 }

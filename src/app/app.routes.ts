@@ -17,6 +17,22 @@ export const routes: Routes = [
     loadComponent: () => import('./components/login/login.component').then((m) => m.LoginComponent),
   },
   {
+    path: 'cosasLindas',
+    loadComponent: () => import('./components/cosas-lindas/cosas-lindas.component').then((m) => m.CosasLindasComponent),
+  },
+  {
+    path: 'cosasFeas',
+    loadComponent: () => import('./components/cosas-feas/cosas-feas.component').then((m) => m.CosasFeasComponent),
+  },
+  {
+    path: 'listaLindas',
+    loadComponent: () => import('./components/lista-lindas/lista-lindas.component').then((m) => m.ListaLindasComponent),
+  },
+  {
+    path: 'listaFeas',
+    loadComponent: () => import('./components/lista-feas/lista-feas.component').then((m) => m.ListaFeasComponent),
+  },
+  {
     path: 'splash',
     loadComponent: () => import('./splash/splash.page').then( m => m.SplashPage)
   },

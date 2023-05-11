@@ -5,7 +5,13 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   providedIn: 'root'
 })
 export class LoginService {
-  constructor(private auth: AngularFireAuth) { }
+
+  public usuarioActual : any;
+  constructor(private auth: AngularFireAuth) { 
+    this.auth.authState.subscribe(x =>{
+      this.usuarioActual =x;
+    });
+  }
 
   registrarUsuario(usuario:string, password:string){
     return this.auth.createUserWithEmailAndPassword(usuario, password);

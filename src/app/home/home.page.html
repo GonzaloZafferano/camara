@@ -1,9 +1,34 @@
-<div *ngIf="(afAuth.user | async); else loguearUsuario">
-  <app-bienvenido></app-bienvenido>
-</div>
-<ng-template #loguearUsuario>
+  <div style="height: 95vh; background-color: #e9a8e3;">
+    <!-- <ion-button expand=""  fill="" (click)="sacarFotoLinda()" class="button-custom2 text-dark">
+      <ion-title class="titulo">TOMAR FOTO LINDA</ion-title>
+    </ion-button>
+    
+    <ion-button expand=""  fill="" (click)="sacarFotoFea()" class="button-custom2 text-dark">
+      <ion-title class="titulo">TOMAR FOTO FEA</ion-title>
+    </ion-button> -->
+    <!-- <ion-button expand=""  fill="" (click)="leerFoto()" class="button-custom2 text-dark">
+      <ion-title class="titulo">LEER FOTO</ion-title>
+    </ion-button>
+     -->
 
-   <app-login></app-login>
+    <ion-button (click)="cosasLindas()"  expand=""  fill=""  class="button-custom2 text-dark">
+      <ion-title class="titulo">Cosas Lindas</ion-title>
+    </ion-button>
+    
+    <ion-button (click)="cosasFeas()" expand=""  fill=""  class="button-custom2 text-dark">
+      <ion-title class="titulo">Cosas Feas</ion-title>
+    </ion-button>
 
-</ng-template>
+    <img [src]="ruta">
 
+    <div style="background-color: #e9a8e3;">
+      <ion-buttons class="d-flex ion-justify-content-center">
+        <ion-button color="success" fill="solid" shape="round" class="logout" id="btn-logout" (click)="logout()">
+          <ion-title class="font-weight-bold text-light" style="font-size: 2em;">SALIR</ion-title>
+        </ion-button>
+      </ion-buttons>
+  </div>
+
+  
+  
+</div> 
