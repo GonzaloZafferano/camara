@@ -74,4 +74,6 @@ debugger;
     foto.votosIds = foto.votosIds.filter(item => item !== this.UsuarioActualId);
     this.firestore.actualizar(foto);
   }
+
+
 }

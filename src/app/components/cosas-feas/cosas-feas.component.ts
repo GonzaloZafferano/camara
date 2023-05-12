@@ -128,4 +128,8 @@ export class CosasFeasComponent  implements OnInit {
   volver() {
     this.router.navigate(['home']);
 }
+
+verGraficos(){
+  this.router.navigate(['grafico-barras']);
+}
 }

@@ -1,5 +1,9 @@
-  <div style="height: 95vh; background-color: #e9a8e3;">
-    <!-- <ion-button expand=""  fill="" (click)="sacarFotoLinda()" class="button-custom2 text-dark">
+  <div style="height: 100vh; " color="success">
+      <ion-button class="button-salir"  color="medium"  id="btn-logout" (click)="logout()">
+        <ion-title class="font-weight-bold text-light" style="font-size: 2em;">SALIR</ion-title>
+      </ion-button>
+   
+    <!-- <ion-button expand=""   fill="" (click)="sacarFotoLinda()" class="button-custom2 text-dark">
       <ion-title class="titulo">TOMAR FOTO LINDA</ion-title>
     </ion-button>
     
@@ -11,24 +15,13 @@
     </ion-button>
      -->
 
-    <ion-button (click)="cosasLindas()"  expand=""  fill=""  class="button-custom2 text-dark">
+    <ion-button (click)="cosasLindas()"   color="medium"  class="button-custom text-dark">
       <ion-title class="titulo">Cosas Lindas</ion-title>
     </ion-button>
     
-    <ion-button (click)="cosasFeas()" expand=""  fill=""  class="button-custom2 text-dark">
+    <ion-button (click)="cosasFeas()"  color="medium"   class="button-custom text-dark">
       <ion-title class="titulo">Cosas Feas</ion-title>
     </ion-button>
 
-    <img [src]="ruta">
-
-    <div style="background-color: #e9a8e3;">
-      <ion-buttons class="d-flex ion-justify-content-center">
-        <ion-button color="success" fill="solid" shape="round" class="logout" id="btn-logout" (click)="logout()">
-          <ion-title class="font-weight-bold text-light" style="font-size: 2em;">SALIR</ion-title>
-        </ion-button>
-      </ion-buttons>
-  </div>
-
-  
-  
+    <!-- <img [src]="ruta"> -->  
 </div> 

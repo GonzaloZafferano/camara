@@ -7,7 +7,8 @@
     </ion-title>  
   </ion-button>
 
-  <ion-content class="content">
+ 
+  <ion-content [scrollEvents]="false" class="content">
 
     <ion-list >  
       <ion-item class="custom-item" *ngFor="let foto of fotos">

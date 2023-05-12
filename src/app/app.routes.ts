@@ -33,6 +33,14 @@ export const routes: Routes = [
     loadComponent: () => import('./components/lista-feas/lista-feas.component').then((m) => m.ListaFeasComponent),
   },
   {
+    path: 'grafico-torta',
+    loadComponent: () => import('./components/graficos-torta/graficos-torta.component').then( m => m.GraficosTortaComponent)
+  },
+  {
+    path: 'grafico-barras',
+    loadComponent: () => import('./components/graficos-barras/graficos-barras.component').then( m => m.GraficosBarrasComponent)
+  },
+  {
     path: 'splash',
     loadComponent: () => import('./splash/splash.page').then( m => m.SplashPage)
   },

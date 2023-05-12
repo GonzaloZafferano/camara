@@ -14,13 +14,13 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-cosas-lindas',
   templateUrl: './cosas-lindas.component.html',
   styleUrls: ['./cosas-lindas.component.scss'],
-  standalone : true,
+  standalone: true,
 
   imports: [IonicModule,
     CommonModule,
     FormsModule]
 })
-export class CosasLindasComponent  implements OnInit {
+export class CosasLindasComponent implements OnInit {
 
   suscripcion: any;
   ruta: string = '';
@@ -28,7 +28,7 @@ export class CosasLindasComponent  implements OnInit {
 
   }
   ngOnInit(): void {
-    
+
 
   }
 
@@ -95,7 +95,7 @@ export class CosasLindasComponent  implements OnInit {
               foto.fotoCategoria = tipoFoto;
               foto.nombreFoto = nombreFoto;
               foto.usuario = usuario;
-              
+
               this.firestore.guardar(foto);
             });
         });
@@ -121,11 +121,15 @@ export class CosasLindasComponent  implements OnInit {
   }
 
 
-  verFotos(){
+  verFotos() {
     this.router.navigate(['listaLindas']);
   }
 
   volver() {
-      this.router.navigate(['home']);
+    this.router.navigate(['home']);
+  }
+
+  verGraficos() {
+    this.router.navigate(['grafico-torta']);
   }
 }
