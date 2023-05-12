@@ -15,12 +15,32 @@
     </ion-button>
      -->
 
-    <ion-button (click)="cosasLindas()"   color="medium"  class="button-custom text-dark">
-      <ion-title class="titulo">Cosas Lindas</ion-title>
+    <ion-button (click)="cosasLindas()"   color="medium"  class="button-custom text-dark" style="flex-direction: column !important;">
+      <div>
+
+        <div>
+          
+          <ion-title style="display: block;" class="titulo">Cosas Lindas</ion-title>
+        </div>
+        <div>
+          
+          <img style="display: block; margin-top: 15px; border-radius: 10px;"  height="200px" src="assets/fotolinda.jpg">
+        </div>
+      </div>
     </ion-button>
     
     <ion-button (click)="cosasFeas()"  color="medium"   class="button-custom text-dark">
-      <ion-title class="titulo">Cosas Feas</ion-title>
+      <div>
+
+        <div>
+          
+          <ion-title style="display: block;" class="titulo">Cosas Feas</ion-title>
+        </div>
+        <div>
+          
+          <img style="display: block; margin-top: 15px; border-radius: 10px;" height="200px" src="assets/fotoFea.jpg">
+        </div>
+      </div>
     </ion-button>
 
     <!-- <img [src]="ruta"> -->  

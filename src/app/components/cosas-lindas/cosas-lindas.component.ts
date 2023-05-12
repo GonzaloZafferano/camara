@@ -56,6 +56,18 @@ export class CosasLindasComponent implements OnInit {
   }
 
 
+  async cargando() {
+    const loading = await this.loadingController.create({
+      message: 'Cargando',
+      spinner: 'bubbles',
+      translucent: true,
+      cssClass: 'custom-class'
+    });
+
+    await loading.present();
+    return loading;
+  }
+
 
   async sacarFotoLinda() {
     await this.sacarFoto(0);
@@ -76,8 +88,8 @@ export class CosasLindasComponent implements OnInit {
       this.suscripcion.unsubscribe();
 
     this.foto.sacarFoto().then(x => {
-      fetch(x).then((e) => {
-
+      fetch(x).then(async (e) => {
+        let carga = await  this.cargando();
         let fecha = new Date();
 
         e.blob().then((blob) => {
@@ -96,7 +108,10 @@ export class CosasLindasComponent implements OnInit {
               foto.nombreFoto = nombreFoto;
               foto.usuario = usuario;
 
-              this.firestore.guardar(foto);
+          
+              this.firestore.guardar(foto).then( x =>{
+                carga.dismiss();
+              });
             });
         });
       });
@@ -121,15 +136,24 @@ export class CosasLindasComponent implements OnInit {
   }
 
 
-  verFotos() {
+  async verFotos() {
+    let carga = await this.cargando();    
     this.router.navigate(['listaLindas']);
+    setTimeout(() => {
+      carga.dismiss();
+    }, 2000);
   }
 
   volver() {
     this.router.navigate(['home']);
   }
 
-  verGraficos() {
+  async verGraficos() {
+    let carga = await this.cargando();    
+
     this.router.navigate(['grafico-torta']);
+    setTimeout(() => {
+      carga.dismiss();
+    }, 2000);
   }
 }

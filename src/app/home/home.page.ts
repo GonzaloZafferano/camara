@@ -32,7 +32,8 @@ export class HomePage {
 
   suscripcion: any;
   ruta: string = '';
-  constructor(private auth: AngularFireAuth, private firestore: FirestoreService, private fireStorage: FireStorageService, private loginService: LoginService, private router: Router, public loadingController: LoadingController, private foto: FotoService) {
+  constructor(private auth: AngularFireAuth, private firestore: FirestoreService, private fireStorage: FireStorageService, private loginService: LoginService,
+     private router: Router, public loadingController: LoadingController, private foto: FotoService) {
 
   }
 
@@ -124,10 +125,10 @@ export class HomePage {
   }
 
   leerFoto() {
-    let z = this.fireStorage.obtenerFoto('https://firebasestorage.googleapis.com/v0/b/p-p-s-2d400.appspot.com/o/gonzalo%40prueba.com_10-05-2023_21-4-515?alt=media&token=f96cd745-774c-4b64-a41a-8202bd271eed');
+   // let z = this.fireStorage.obtenerFoto('https://firebasestorage.googleapis.com/v0/b/p-p-s-2d400.appspot.com/o/gonzalo%40prueba.com_10-05-2023_21-4-515?alt=media&token=f96cd745-774c-4b64-a41a-8202bd271eed');
 
-    this.ruta = 'https://firebasestorage.googleapis.com/v0/b/p-p-s-2d400.appspot.com/o/gonzalo%40prueba.com_10-05-2023_21-4-515?alt=media&token=f96cd745-774c-4b64-a41a-8202bd271eed';
-    debugger;
+   // this.ruta = 'https://firebasestorage.googleapis.com/v0/b/p-p-s-2d400.appspot.com/o/gonzalo%40prueba.com_10-05-2023_21-4-515?alt=media&token=f96cd745-774c-4b64-a41a-8202bd271eed';
+   // debugger;
     //this.ruta = z;
   }
 

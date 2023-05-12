@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IonInput, IonicModule } from '@ionic/angular';
+import { IonInput, IonicModule, LoadingController, Platform } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
@@ -35,14 +35,19 @@ export class LoginComponent implements OnInit {
   mensajeEmail: string = '';
   usuarios : Usuario [] = [];
   ruta : string = "/resources/icon.png";
-  constructor(private loginService: LoginService, private router:Router) { }
+  constructor(public loadingController: LoadingController,private loginService: LoginService, private router:Router, private platform: Platform ) { }
   ngOnInit() {
-    this.usuarios.push(new Usuario('gonzalo@prueba.com', '123456'));
-    this.usuarios.push(new Usuario('silas@prueba.com', '654321'));
-    this.usuarios.push(new Usuario('nico@prueba.com','111111'));
+ this.usuarios.push(new Usuario('admin@admin.com', '111111'));
+    this.usuarios.push(new Usuario('invitado@invitado.com', '222222'));
+    this.usuarios.push(new Usuario('usuario@usuario.com', '333333'));
+    this.usuarios.push(new Usuario('tester@tester.com', '555555'));
+
+    this.platform.backButton.subscribeWithPriority(0, () => {
+      // Agrega la acción que deseas realizar cuando se presiona el botón de retroceso   
+    });
    }
 
-  login() {   
+ async login() {   
     let errorEnDatos = false;
     let emailValido = false;
 
@@ -70,10 +75,15 @@ export class LoginComponent implements OnInit {
 
     if (!errorEnDatos && emailValido) {
       this.loginService.loguearUsuario(this.email, this.password)
-      .then(() => {
+      .then(async () => {
         this.limpiarCampos();
+
+        let carga = await this.cargando();
         this.router.navigate(['/home']);
 
+        setTimeout(() => {
+          carga.dismiss();
+        }, 2000);
         //this.addNewItem(true);
       }).catch(() => {
         this.mensajeError = "Correo o contraseña inválidos.";
@@ -140,4 +150,20 @@ validadCampoVacio(item: IonInput) {
       this.password = usuario.password;
     }
   }
+
+
+  
+  async cargando() {
+    const loading = await this.loadingController.create({
+      message: 'Cargando',
+      spinner: 'bubbles',
+      translucent: true,
+      cssClass: 'custom-class'
+    });
+
+    await loading.present();
+    return loading;
+  }
+
+
 }

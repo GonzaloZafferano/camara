@@ -6,7 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
-
+import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx'; 
 //Agregamos ESTO
 import { AngularFireModule } from '@angular/fire/compat';
 import { defineCustomElements } from '@ionic/pwa-elements/loader'; 
@@ -24,7 +24,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     importProvidersFrom(IonicModule.forRoot({})),
-
+    ScreenOrientation,
     //Y ESTO
     provideRouter(routes),
     importProvidersFrom(AngularFireModule.initializeApp(environment.firebaseConfig),

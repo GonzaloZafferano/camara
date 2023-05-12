@@ -9,6 +9,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { IonicModule, LoadingController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { settings } from 'cluster';
+import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx'; 
 
 @Component({
   selector: 'app-cosas-feas',
@@ -25,10 +27,13 @@ export class CosasFeasComponent  implements OnInit {
 
   suscripcion: any;
   ruta: string = '';
-  constructor(private auth: AngularFireAuth, private firestore: FirestoreService, 
+  constructor(private screenOrientation: ScreenOrientation, private auth: AngularFireAuth, private firestore: FirestoreService, 
     private fireStorage: FireStorageService, private loginService: LoginService, private router: Router, public loadingController: LoadingController, private foto: FotoService) {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT); //BLOQUEO VERTICAL
 
   }
+
+
   ngOnInit(): void {
     
 
@@ -58,6 +63,17 @@ export class CosasFeasComponent  implements OnInit {
   }
 
 
+  async cargando() {
+    const loading = await this.loadingController.create({
+      message: 'Cargando',
+      spinner: 'lines',
+      translucent: true,
+      cssClass: 'custom-class'
+    });
+
+    await loading.present();
+    return loading;
+  }
   async sacarFotoFea() {
     await this.sacarFoto(1);
   }
@@ -75,8 +91,9 @@ export class CosasFeasComponent  implements OnInit {
       this.suscripcion.unsubscribe();
 
     this.foto.sacarFoto().then(x => {
-      fetch(x).then((e) => {
+      fetch(x).then(async (e) => {
 
+       let carga = await  this.cargando();
         let fecha = new Date();
 
         e.blob().then((blob) => {
@@ -95,7 +112,9 @@ export class CosasFeasComponent  implements OnInit {
               foto.nombreFoto = nombreFoto;
               foto.usuario = usuario;
 
-              this.firestore.guardar(foto);
+              this.firestore.guardar(foto).then( x =>{
+                carga.dismiss();
+              });
             });
         });
       });
@@ -120,8 +139,13 @@ export class CosasFeasComponent  implements OnInit {
   }
 
 
-  verFotos(){
+  async verFotos(){
+  let carga = await this.cargando();
+
     this.router.navigate(['listaFeas']);
+    setTimeout(() => {
+      carga.dismiss();
+    }, 2000);
   }
 
   
@@ -129,7 +153,12 @@ export class CosasFeasComponent  implements OnInit {
     this.router.navigate(['home']);
 }
 
-verGraficos(){
+async verGraficos(){
+  let carga = await this.cargando();
   this.router.navigate(['grafico-barras']);
+
+  setTimeout(() => {
+    carga.dismiss();
+  }, 2000);
 }
 }
