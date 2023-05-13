@@ -42,7 +42,7 @@ export class FirestoreService {
 
   public obtenerFotosPorTipoObservable(tipoFoto: number) {
     const coleccion = collection(this.firestore, 'fotosUsuarios');
-    const q = query(coleccion, orderBy('fecha', 'asc'), where('fotoCategoria', '==', tipoFoto));
+    const q = query(coleccion, orderBy('fecha', 'desc'), where('fotoCategoria', '==', tipoFoto));
     return collectionData(q);
   }
 }
